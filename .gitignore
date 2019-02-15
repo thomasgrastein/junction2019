@@ -11,6 +11,9 @@
 # production
 /build
 
+# spam
+/.idea
+
 # misc
 .DS_Store
 .env.local
