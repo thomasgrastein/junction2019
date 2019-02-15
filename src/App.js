@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Layout, List } from 'antd';
-import logo from './logo.svg';
+import logo from './logo2.svg';
 import './App.css';
 const {
   Header, Footer, Content,
