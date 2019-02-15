@@ -17,9 +17,9 @@ class App extends Component {
         "X-RapidAPI-Key": "0ca1127a6emsh44f8aed7c48d5dap1866d1jsn90e23b40f29e"
       }
     }).then(res => res.json()).then(r => {
-      this.setState(prevState => ({
-        array: [...prevState.array, newElement]
-    }))
+      this.setState({zones: r}, () => {
+        console.log(r);
+      })
     })
   };
 
