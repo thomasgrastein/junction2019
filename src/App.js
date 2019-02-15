@@ -31,11 +31,11 @@ class App extends Component {
           <Button onClick={() => this.getResultsFromZones()}>Klik her</Button>
           <a
             className="App-link"
-            href="https://reactjs.org"
+            href="https://www.facebook.com/messages/t/erik.poerksen/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            Learn React by asking Erik
           </a>
         </header>
       </div>
