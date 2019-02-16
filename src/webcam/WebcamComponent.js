@@ -34,12 +34,15 @@ export default class WebcamComponent extends React.Component {
 
     return (
       <div className="webcam-component">
+        <h2>Image</h2>
+        <p>If you have a condition where you find it easier to explain with pictures, then use the webcam to take a picture for your doctor.</p>
+
         <Webcam
           audio={false}
-          height={485}
+          height={395}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={860}
+          width={700}
           videoConstraints={videoConstraints}
         />
         <br/>
