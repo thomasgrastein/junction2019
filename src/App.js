@@ -5,6 +5,7 @@ import logo from './logo2.svg';
 import FirstStep from './steps/FirstStep';
 import SecondStep from './steps/SecondStep';
 import ThirdStep from './steps/ThirdStep';
+import FourthStep from './steps/FourthStep';
 
 import { ExampleFunction } from './Functions';
 
@@ -22,8 +23,11 @@ const steps = [{
   title: 'Second',
   content: <SecondStep />,
 }, {
-  title: 'Last',
+  title: 'Third',
   content: <ThirdStep />,
+}, {
+    title: 'Fourth',
+    content: <FourthStep />,
 }];
 
 class App extends Component {
