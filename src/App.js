@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Layout, List, Steps, message } from 'antd';
+import { Button, Layout, List, Steps, message, Row, Col } from 'antd';
 import logo from './logo2.svg';
 
 import FirstStep from './steps/FirstStep';
@@ -66,38 +66,29 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
           </Header>
           <Content>
-            <Steps current={current}>
-              {steps.map(item => <Step key={item.title} title={item.title} />)}
-            </Steps>
             <div className="steps-content">{steps[current].content}</div>
-            <div className="steps-action">
-              {
-                current < steps.length - 1
-                && <Button type="primary" onClick={() => this.next()}>Next</Button>
-              }
-              {
-                current === steps.length - 1
-                && <Button type="primary" onClick={() => message.success('Processing complete!')}>Done</Button>
-              }
-              {
-                current > 0
-                && (
-                  <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-                    Previous
-            </Button>
-                )
-              }
-            </div>
             <Button onClick={() => this.getResultsFromZones()}>Klik her</Button>
             <List>
               {zones ? zones.map((e, k) =>
                 <List.Item key={k}>{e.Name}</List.Item>
               ) : null}
             </List>
-
+            <Button onClick={() => ExampleFunction()}>Eriks test-knap</Button>
           </Content>
           <Footer>
-            <Button onClick={() => ExampleFunction()}>Eriks test-knap</Button>
+            <Row type="flex" justify="center">
+              <Col span={2}>
+              <Button type="primary" onClick={() => this.prev()} disabled={current === 0 ? true : false}>Previous</Button>
+              </Col>
+              <Col span={20}>
+                <Steps className="steps" current={current}>
+                  {steps.map(item => <Step key={item.title} title={item.title} icon={item.icon}/>)}
+                </Steps>
+              </Col>
+              <Col span={2}>
+              <Button type="primary" onClick={() => this.next()}>{(current === steps.length-1) ? "Finish" : "Next"}</Button>
+              </Col>
+            </Row>
           </Footer>
         </Layout>
       </div>

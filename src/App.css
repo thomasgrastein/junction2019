@@ -43,6 +43,10 @@
   padding-top: 80px;
 }
 
+.steps {
+  text-align: left;
+}
+
 .steps-action {
   margin-top: 24px;
 }
