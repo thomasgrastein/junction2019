@@ -27,16 +27,20 @@ const steps = [{
   icon: <Icon type="form" />,
   content: <SecondStep />,
 }, {
-  title: 'Third',
-  content: <ThirdStep />,
-}, {
-  title: 'Fourth',
+  title: 'Camera',
+  icon: <Icon type="camera" />,
   content: <FourthStep />,
 }, {
-    title: 'Fifth',
+  title: 'Diagnosis',
+  icon: <Icon type="file" />,
+  content: <ThirdStep />,
+}, {
+    title: 'Book',
+    icon: <Icon type="calendar" />,
     content: <FifthStep/>,
 }, {
     title: 'Done',
+    icon: <Icon type="smile" />,
     content: <SixthStep/>
 }];
 

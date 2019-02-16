@@ -52,8 +52,18 @@ body {
   min-height: calc(100vh - 250px);
 }
 
+.firststep-wrapper {
+  padding: 30px 50px;
+}
+
+.firststep-descr {
+  width: 50%;
+  
+  text-align: start;
+}
+
 .secondstep-wrapper {
-  padding: 50px;
+  padding: 30px 50px;
   text-align: start;
 }
 
@@ -65,7 +75,13 @@ body {
 }
 
 .thirdstep-wrapper {
-  padding: 50px;
+  padding: 30px 50px;
+
+  text-align: start;
+}
+
+.calendar-step {
+  padding: 30px 50px; 
 
   text-align: start;
 }
@@ -86,7 +102,15 @@ body {
 }
 
 .webcam-component {
-  padding: 50px;
+  padding: 30px 50px;
+  
+  p, h2 {
+    text-align: start;
+  }
+
+  p{
+    margin-bottom: 24px;
+  }
 }
 
 .capture {
@@ -96,6 +120,12 @@ body {
 
 .image-delete {
   position: relative;
-  top: -490px;
-  right: -430px;
+  top: -405px;
+  right: -350px;
+}
+
+.typ {
+  padding: 30px 50px; 
+
+  text-align: start;
 }

@@ -2,8 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { DatePicker } from 'antd';
 
-const { MonthPicker, RangePicker } = DatePicker;
-const format = 'HH:mm';
+const { MonthPicker } = DatePicker;
 
 function range(start, end) {
   const result = [];
@@ -18,51 +17,28 @@ function disabledDate(current) {
   return current && current < moment().startOf('day');
 }
 
+
 function disabledDateTime() {
   return {
-    disabledHours: () => range(0, 24).splice(0, 8),
-    disabledMinutes: () => range(30, 60),
-  };
-}
-
-function disabledRangeTime(_, type) {
-  if (type === 'start') {
-    return {
-      disabledHours: () => range(0, 60).splice(4, 20),
-      disabledMinutes: () => range(30, 60),
-    };
-  }
-  return {
-    disabledHours: () => range(0, 60).splice(20, 4),
-    disabledMinutes: () => range(0, 31),
+    disabledHours: () => range(0, 8).concat(range(17,24)),
   };
 }
 
 export default class FifthStep extends React.Component {
 
-
   render() {
       return (
-          <div>
+          <div className="calendar-step">
+            <h2>Book an apointment</h2>
+            <p>If you haven't found what you haven't had your questions answered and want to have an consultation, you can now book an apointment here.</p>
             <DatePicker
               format="YYYY-MM-DD HH:mm"
               disabledDate={disabledDate}
               disabledTime={disabledDateTime}
-              showTime={{ defaultValue: moment('00:00', 'HH:mm') }}
+              showTime={{ format: 'HH:mm', minuteStep: '15' }}
             />
-            <br />
-            <MonthPicker disabledDate={disabledDate} placeholder="Select month" />
-            <br />
-            <RangePicker
-              disabledDate={disabledDate}
-              disabledTime={disabledRangeTime}
-              showTime={{
-                hideDisabledOptions: true,
-                defaultValue: [moment('00:00', 'HH:mm'), moment('11:59', 'HH:mm')],
-              }}
-              format="YYYY-MM-DD HH:mm"
-             />
-            </div>
+         </div>
+
       )
   }
 }
