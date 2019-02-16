@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Layout, List, Steps, Row, Col, Icon } from 'antd';
-import logo from './logo2.svg';
+import logo from './Kenko.svg';
 
 import FirstStep from './steps/FirstStep';
 import SecondStep from './steps/SecondStep';
