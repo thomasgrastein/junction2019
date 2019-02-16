@@ -50,3 +50,8 @@
 .steps-action {
   margin-top: 24px;
 }
+
+.ant-col-16 > div {
+  margin-left: auto;
+  margin-right: auto;
+}
