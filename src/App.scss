@@ -41,11 +41,14 @@ body {
 .steps-content {
   border-radius: 6px;
   background-color: #fafafa;
-  overflow-x: scroll;
 }
 
 .ant-layout {
   height:100%;
+}
+
+.ant-layout-content {
+  overflow: scroll;
 }
 
 .firststep-wrapper {
