@@ -63,10 +63,21 @@ class App extends Component {
       <div className="App">
         <Layout>
           <Header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
+                <img src={logo} className="App-logo" alt="logo" />
           </Header>
           <Content>
-            <div className="steps-content">{steps[current].content}</div>
+            <Row className="steps" type="flex" justify="center" align="middle">
+                <Col span={16}>
+                    <Steps className="steps" current={current}>
+                        {steps.map(item => <Step key={item.title} title={item.title} icon={item.icon} />)}
+                    </Steps>
+                </Col>
+            </Row>
+            <Row type="flex" justify="center" align="middle">
+                <Col span={16}>
+                    <div className="steps-content">{steps[current].content}</div>
+                </Col>
+            </Row>
             <Button onClick={() => this.getResultsFromZones()}>Klik her</Button>
             <List>
               {zones ? zones.map((e, k) =>
@@ -80,10 +91,7 @@ class App extends Component {
               <Col span={2}>
               <Button type="primary" onClick={() => this.prev()} disabled={current === 0 ? true : false}>Previous</Button>
               </Col>
-              <Col span={20}>
-                <Steps className="steps" current={current}>
-                  {steps.map(item => <Step key={item.title} title={item.title} icon={item.icon}/>)}
-                </Steps>
+              <Col span={12}>
               </Col>
               <Col span={2}>
               <Button type="primary" onClick={() => this.next()}>{(current === steps.length-1) ? "Finish" : "Next"}</Button>

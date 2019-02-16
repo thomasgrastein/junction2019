@@ -7,11 +7,7 @@ export default () => {
 
     return (
         <div>
-            <Row type="flex" justify="center" align="middle">
-                <Col span={16}>
-                    <ImageMapper className="mapper" src={body} height={600}/>
-                </Col>
-            </Row>
+            <ImageMapper className="mapper" src={body} height={600}/>
         </div>
     );
 }
