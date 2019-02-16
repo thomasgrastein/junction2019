@@ -12,6 +12,7 @@ body {
 
 .App-logo {
     height: 1.5rem;
+    width: 100%;
     pointer-events: none;
 }
 
@@ -134,5 +135,36 @@ body {
 
   img {
     margin-bottom: 10px;
+  }
+}
+
+.progress {
+  display: flex; 
+  padding-bottom: 24px;
+
+  &:first-of-type {
+    margin-top: 24px;
+    padding-top: 24px;
+
+
+  }
+  
+  &:not(:last-of-type) {
+    margin-bottom: 24px;
+
+    border-bottom: 1px solid #d9d9d9;
+  }
+
+  .progress-bar {
+    margin-right: 24px;
+  }
+
+  .diagnosis-disc {
+    display: flex; 
+    flex-direction: column; 
+
+    h3 {
+       text-transform: capitalize;
+    }
   }
 }
