@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Slider, Row, Col, Checkbox, Select, Input } from 'antd'; 
+=======
+import { Slider, Row, Col, Checkbox, Select } from 'antd';
+>>>>>>> 832454285f6e8eb0224b4c8399ffb06a47b443bb
 
 export default () => {
 

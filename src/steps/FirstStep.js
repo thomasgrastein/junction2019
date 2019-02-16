@@ -3,11 +3,42 @@ import { Checkbox, Row, Col } from 'antd';
 import body from './body.svg';
 import ImageMapper from 'react-image-mapper';
 
-export default () => {
+const MAP = {
+    name: "my-map",
+    areas: [
+        { name: "1", shape: "poly", coords: [219, 118, 220, 210, 283, 210, 284, 119], preFillColor: "pink" },
+    ]
+}
 
-    return (
-        <div>
-            <ImageMapper className="mapper" src={body} height={600}/>
-        </div>
-    );
+export default class FirstStep extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            area: {}
+        }
+    }
+
+    log = () => {
+        console.log("hi");
+    }
+
+    render() {
+        return (
+            <div>
+                <ImageMapper
+                    className="mapper"
+                    src={body}
+                    map={MAP}
+                    height={600}
+                    onLoad={() => this.log()}
+                    onClick={(area) => this.log()}
+                    onMouseEnter={area => this.log()}
+                    onMouseLeave={area => this.log()}
+                    onMouseMove={(area, _, evt) => this.log()}
+                    onImageClick={evt => this.log()}
+                    onImageMouseMove={evt => this.log()}
+                />
+            </div>
+        );
+    }
 }
