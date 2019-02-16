@@ -44,7 +44,7 @@
   text-align: start;
 }
 
-.secondstep-wrapper > .ant-slider,.ant-checkbox-group, .ant-select {
+.secondstep-wrapper > .ant-slider,.ant-checkbox-group, .ant-select, .ant-input {
   margin-top: 8px;
   margin-bottom: 24px;
 }
