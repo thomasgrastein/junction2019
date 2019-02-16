@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Layout, List, Steps, message, Row, Col } from 'antd';
+import { Button, Layout, List, Steps, Row, Col, Icon } from 'antd';
 import logo from './logo2.svg';
 
 import FirstStep from './steps/FirstStep';
@@ -82,25 +82,23 @@ class App extends Component {
                     <div className="steps-content">{steps[current].content}</div>
                 </Col>
             </Row>
-            <Button onClick={() => this.getResultsFromZones()}>Klik her</Button>
             <List>
               {zones ? zones.map((e, k) =>
                 <List.Item key={k}>{e.Name}</List.Item>
               ) : null}
             </List>
-            <Button onClick={() => ExampleFunction()}>Eriks test-knap</Button>
+            <Row className="page-navi" type="flex" justify="center">
+                <Col span={2}>
+                    <Button type="primary" onClick={() => this.prev()} disabled={current === 0 ? true : false}><Icon type="left" />Previous</Button>
+                </Col>
+
+                <Col span={2}>
+                    <Button type="primary" onClick={() => this.next()}>{(current === steps.length - 1) ? "Finish" : "Next"} <Icon type="right" /></Button>
+                </Col>
+            </Row>
           </Content>
           <Footer>
-            <Row type="flex" justify="center">
-              <Col span={2}>
-              <Button type="primary" onClick={() => this.prev()} disabled={current === 0 ? true : false}>Previous</Button>
-              </Col>
-              <Col span={12}>
-              </Col>
-              <Col span={2}>
-              <Button type="primary" onClick={() => this.next()}>{(current === steps.length-1) ? "Finish" : "Next"}</Button>
-              </Col>
-            </Row>
+           
           </Footer>
         </Layout>
       </div>
