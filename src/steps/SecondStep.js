@@ -1,5 +1,5 @@
 import React from 'react';
-import { Slider, Row, Col, Checkbox, Select, Input } from 'antd'; 
+import { Slider, Row, Col, Checkbox, Select, Input, DatePicker } from 'antd'; 
 
 export default () => {
 
@@ -28,6 +28,8 @@ export default () => {
             <strong>How much pain to you experience (1 - 100)</strong>
             <Slider></Slider>
             <strong>Have you experienced this before?</strong>
+            <br></br>
+            <strong>When did you experience it for the first time?</strong>
             <br></br>
             <CheckboxGroup options={plainOptions} onChange={onChange} /> 
             <br></br>
