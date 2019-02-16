@@ -6,6 +6,7 @@ import FirstStep from './steps/FirstStep';
 import SecondStep from './steps/SecondStep';
 import ThirdStep from './steps/ThirdStep';
 import FourthStep from './steps/FourthStep';
+import FifthStep from './steps/FifthStep';
 
 import { ExampleFunction } from './Functions';
 
@@ -28,6 +29,9 @@ const steps = [{
 }, {
     title: 'Fourth',
     content: <FourthStep />,
+}, {
+    title: 'Fifth',
+    content: <FifthStep />,
 }];
 
 class App extends Component {
@@ -82,7 +86,7 @@ class App extends Component {
                     <div className="steps-content">{steps[current].content}</div>
                 </Col>
             </Row>
-            
+
           </Content>
           <Footer style={{ position: 'absolute', width: '100%', bottom: 0 }}>
           <Row className="page-navi" type="flex" justify="center">
