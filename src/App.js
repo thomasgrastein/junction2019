@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { Button, Layout, List, Steps, Row, Col, Icon } from 'antd';
+<<<<<<< HEAD
+import logo from './logo2.svg';
+import Webcam from "react-webcam";
+=======
 import logo from './Kenko.svg';
+>>>>>>> 0b849498ddda23274d4be97371cfc3f8231d3a3a
 
 import FirstStep from './steps/FirstStep';
 import SecondStep from './steps/SecondStep';
@@ -18,38 +23,13 @@ const {
 } = Layout;
 const Step = Steps.Step;
 
-const steps = [{
-  title: 'Point',
-    icon: <Icon type="user" />,
-  content: <FirstStep />,
-}, {
-  title: 'Describe',
-  icon: <Icon type="form" />,
-  content: <SecondStep />,
-}, {
-  title: 'Camera',
-  icon: <Icon type="camera" />,
-  content: <FourthStep />,
-}, {
-  title: 'Diagnosis',
-  icon: <Icon type="file" />,
-  content: <ThirdStep />,
-}, {
-    title: 'Book',
-    icon: <Icon type="calendar" />,
-    content: <FifthStep/>,
-}, {
-    title: 'Done',
-    icon: <Icon type="smile" />,
-    content: <SixthStep/>
-}];
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       pics: [],
-      current: 0,
+      current: 2,
     }
   }
 
@@ -63,7 +43,60 @@ class App extends Component {
     this.setState({ current });
   }
 
+  addCaptureToState = (imageSrc) => {
+    this.setState({
+        pics: [...this.state.pics, imageSrc]
+    }, () => this.sendImagesToFilio())
+  };
+
+  removeCaptureFromState = (e) => {
+      this.setState(prevState => ({
+          pics: prevState.pics.filter(image => image !== e)
+      }));
+  };
+
+  sendImagesToFilio = () => {
+      let data = {"file": this.state.pics[0]};
+      fetch('https://Fileiostefan.skliarovV1.p.rapidapi.com/uploadFile', {
+          method: 'POST',
+          headers: {
+              "X-RapidAPI-Key": "6f85909739mshe3c9795d32c34b8p10e5d4jsn9b9185621f4a",
+              "Content-Type": "application/x-www-form-urlencoded",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+          },
+          body: JSON.stringify(data)
+      }).then(r => console.log(r)).catch(e => console.log(e))
+  }
+
+
   render() {
+      let steps = [{
+        title: 'Point',
+          icon: <Icon type="user" />,
+        content: <FirstStep />,
+      }, {
+        title: 'Describe',
+        icon: <Icon type="form" />,
+        content: <SecondStep />,
+      }, {
+        title: 'Camera',
+        icon: <Icon type="camera" />,
+        content: <FourthStep addCaptureToState={this.addCaptureToState} removeCaptureFromState={this.removeCaptureFromState}/>,
+      }, {
+        title: 'Diagnosis',
+        icon: <Icon type="file" />,
+        content: <ThirdStep />,
+      }, {
+          title: 'Book',
+          icon: <Icon type="calendar" />,
+          content: <FifthStep/>,
+      }, {
+          title: 'Done',
+          icon: <Icon type="smile" />,
+          content: <SixthStep/>
+      }];
+
     const { current } = this.state;
     return (
       <div className="App">

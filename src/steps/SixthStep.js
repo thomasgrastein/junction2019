@@ -6,6 +6,7 @@ import { Row, Col, Rate, Icon } from 'antd';
 export default class SixthStep extends React.Component {
 
 
+
   render() {
       return (
           <div className="typ">
