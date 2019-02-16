@@ -1,7 +1,8 @@
 import React from 'react';
-import { Checkbox, Row, Col } from 'antd';
+import {Modal, Button, Row, Col, List} from 'antd';
 import body from './body.svg';
 import ImageMapper from 'react-image-mapper';
+
 
 const MAP = {
     name: "my-map",
@@ -14,15 +15,43 @@ export default class FirstStep extends React.Component {
     constructor() {
         super();
         this.state = {
-            area: {}
+            area: {},
+            visible: false,
+            zones: [],
+            working: false,
         }
     }
 
     log = () => {
         console.log("hi");
+    };
+
+    toggleModal = () => {
+        const { visible } = this.state;
+        this.setState({visible: !visible});
     }
 
+    getResultsFromZones = (locationId) => {
+        const { working } = this.state;
+        if(!working) {
+            this.setState( {working: true});
+            fetch('https://priaid-symptom-checker-v1.p.rapidapi.com/body/locations/'+locationId+'?language=en-gb', {
+                headers: {
+                    "X-RapidAPI-Key": "6f85909739mshe3c9795d32c34b8p10e5d4jsn9b9185621f4a"
+                }
+            }).then(res => res.json()).then(r => {
+                this.setState({ zones: r }, () => {
+                    console.log(r);
+                    this.setState({working: false});
+                })
+            })
+        }
+    }
+
+
     render() {
+        const { zones} = this.state;
+        //var zones;
         return (
             <div>
                 <Row type="flex" justify="center" align="middle">
@@ -42,6 +71,22 @@ export default class FirstStep extends React.Component {
                         />
                     </Col>
                 </Row>
+                <Button type="primary" onClick={() => {
+                    this.toggleModal();
+                    this.getResultsFromZones(15);
+                }}>
+                    Open Modal
+                </Button>
+                <Modal
+                    title="Basic Modal"
+                    visible={this.state.visible}
+                    onOk={this.toggleModal}
+                    onCancel={this.toggleModal}
+                >
+                    {zones ? zones.map((e, k) =>
+                        <List.Item key={k}>{e.Name}</List.Item>
+                    ) : null}
+                </Modal>
             </div>
         );
     }
