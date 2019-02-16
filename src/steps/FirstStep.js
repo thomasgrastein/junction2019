@@ -32,11 +32,28 @@ export default class FirstStep extends React.Component {
         this.setState({visible: !visible});
     }
 
-    getResultsFromZones = (locationId) => {
+    getSubCategoriesFromlocation = (locationId) => {
         const { working } = this.state;
         if(!working) {
             this.setState( {working: true});
             fetch('https://priaid-symptom-checker-v1.p.rapidapi.com/body/locations/'+locationId+'?language=en-gb', {
+                headers: {
+                    "X-RapidAPI-Key": "6f85909739mshe3c9795d32c34b8p10e5d4jsn9b9185621f4a"
+                }
+            }).then(res => res.json()).then(r => {
+                this.setState({ zones: r }, () => {
+                    console.log(r);
+                    this.setState({working: false});
+                })
+            })
+        }
+    }
+
+    getSymptomsFromSubCategories = (subId) => {
+        const { working } = this.state;
+        if(!working) {
+            this.setState( {working: true});
+            fetch('https://priaid-symptom-checker-v1.p.rapidapi.com/symptoms/'+subId+'/man?language=en-gb', {
                 headers: {
                     "X-RapidAPI-Key": "6f85909739mshe3c9795d32c34b8p10e5d4jsn9b9185621f4a"
                 }
@@ -73,7 +90,7 @@ export default class FirstStep extends React.Component {
                 </Row>
                 <Button type="primary" onClick={() => {
                     this.toggleModal();
-                    this.getResultsFromZones(15);
+                    this.getSubCategoriesFromlocation(15);
                 }}>
                     Open Modal
                 </Button>
