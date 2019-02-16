@@ -48,7 +48,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      zones: [],
+      pics: [],
       current: 0,
     }
   }
@@ -63,20 +63,8 @@ class App extends Component {
     this.setState({ current });
   }
 
-  getResultsFromZones = () => {
-    fetch('https://priaid-symptom-checker-v1.p.rapidapi.com/body/locations?language=en-gb', {
-      headers: {
-        "X-RapidAPI-Key": "6f85909739mshe3c9795d32c34b8p10e5d4jsn9b9185621f4a"
-      }
-    }).then(res => res.json()).then(r => {
-      this.setState({ zones: r }, () => {
-        console.log(r);
-      })
-    })
-  };
-
   render() {
-    const { zones, current } = this.state;
+    const { current } = this.state;
     return (
       <div className="App">
         <Layout>
