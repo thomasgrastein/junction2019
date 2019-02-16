@@ -70,9 +70,10 @@ export default class FirstStep extends React.Component {
         const { zones} = this.state;
         //var zones;
         return (
-            <div>
+            <div className="firststep-wrapper">
                 <Row type="flex" justify="center" align="middle">
                     <Col span={16}>
+                        <h1>Please point out the body parts where you feel pain or discomfort</h1>
                         <ImageMapper
                             className="mapper"
                             src={body}
