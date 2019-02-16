@@ -6,6 +6,7 @@ import FirstStep from './steps/FirstStep';
 import SecondStep from './steps/SecondStep';
 import ThirdStep from './steps/ThirdStep';
 import FourthStep from './steps/FourthStep';
+import FifthStep from './steps/FifthStep';
 
 import { ExampleFunction } from './Functions';
 
@@ -28,6 +29,9 @@ const steps = [{
 }, {
     title: 'Fourth',
     content: <FourthStep />,
+}, {
+    title: 'Fifth',
+    content: <FifthStep />,
 }];
 
 class App extends Component {
@@ -98,7 +102,7 @@ class App extends Component {
             </Row>
           </Content>
           <Footer>
-           
+
           </Footer>
         </Layout>
       </div>
