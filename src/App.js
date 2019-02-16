@@ -9,7 +9,7 @@ import FourthStep from './steps/FourthStep';
 
 import { ExampleFunction } from './Functions';
 
-import './App.css';
+import './App.scss';
 
 const {
   Header, Footer, Content,
