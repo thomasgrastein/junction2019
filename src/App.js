@@ -7,6 +7,7 @@ import SecondStep from './steps/SecondStep';
 import ThirdStep from './steps/ThirdStep';
 import FourthStep from './steps/FourthStep';
 import FifthStep from './steps/FifthStep';
+import SixthStep from './steps/SixthStep'
 
 import { ExampleFunction } from './Functions';
 
