@@ -84,7 +84,7 @@ class App extends Component {
             </Row>
             
           </Content>
-          <Footer>
+          <Footer style={{ position: 'absolute', width: '100%', bottom: 0 }}>
           <Row className="page-navi" type="flex" justify="center">
                 <Col span={2}>
                     <Button type="primary" onClick={() => this.prev()} disabled={current === 0 ? true : false}><Icon type="left" />Previous</Button>
