@@ -12,7 +12,7 @@
 }
 
 .App-header {
-    background-color: #282c34;
+    background-color: #002766;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,8 +45,10 @@
 }
 
 .secondstep-wrapper > .ant-slider,.ant-checkbox-group, .ant-select, .ant-input {
-  margin-top: 8px;
-  margin-bottom: 24px;
+  &:not(:last-child) {
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
 }
 
 .steps {
@@ -59,7 +61,26 @@
   margin-top: 24px;
 }
 
+.page-navi {
+  margin-top: 24px;
+}
+
 .ant-col-16 > div.steps-content > div > div{
   margin-left: auto;
   margin-right: auto;
+}
+
+.webcam-component {
+  padding: 50px;
+}
+
+.capture {
+  margin-top: 8px;
+  margin-bottom: 24px; 
+}
+
+.image-delete {
+  position: relative;
+  top: -490px;
+  right: -430px;
 }

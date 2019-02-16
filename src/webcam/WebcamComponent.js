@@ -1,5 +1,6 @@
 import React from 'react';
 import Webcam from "react-webcam";
+import { Button } from 'antd';
 
 export default class WebcamComponent extends React.Component {
   state = {
@@ -32,16 +33,17 @@ export default class WebcamComponent extends React.Component {
     };
 
     return (
-      <div>
+      <div className="webcam-component">
         <Webcam
           audio={false}
-          height={500}
+          height={485}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={500}
+          width={860}
           videoConstraints={videoConstraints}
         />
-        <button onClick={this.capture}>Capture photo</button>
+        <br/>
+        <Button className="capture" size="large" type="primary" shape="circle" icon="camera" onClick={this.capture}></Button>
 
         {this.state.imageData ?
             <div>
@@ -49,7 +51,8 @@ export default class WebcamComponent extends React.Component {
                   return (
                       <div>
                           <img src={image}/>
-                          <button onClick={() => this.delete(image)}>Delete</button>
+                          <br/>
+                          <Button className="image-delete" icon="close" size="small" type="danger" shape="circle" onClick={() => this.delete(image)}></Button>
                       </div>
                   );
                 })}
