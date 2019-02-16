@@ -1,6 +1,6 @@
 import React from 'react';
 import Webcam from "react-webcam";
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 
 export default class FourthStep extends React.Component {
   constructor() {
@@ -20,6 +20,7 @@ export default class FourthStep extends React.Component {
         imageData : [...this.state.imageData, imageSrc]
     })
     this.props.addCaptureToState(imageSrc);
+    message.success('Picture has been taking! See it below');
   };
 
   delete = (e) => {

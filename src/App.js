@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Layout, List, Steps, Row, Col, Icon } from 'antd';
-<<<<<<< HEAD
-import logo from './logo2.svg';
 import Webcam from "react-webcam";
-=======
 import logo from './Kenko.svg';
->>>>>>> 0b849498ddda23274d4be97371cfc3f8231d3a3a
 
 import FirstStep from './steps/FirstStep';
 import SecondStep from './steps/SecondStep';
