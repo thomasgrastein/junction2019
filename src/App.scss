@@ -3,6 +3,7 @@
 .App {
     text-align: center;
     height: 100%;
+    max-height: 100%;
 }
 
 body {
@@ -11,7 +12,7 @@ body {
 
 .App-logo {
     animation: App-logo-spin infinite 20s linear;
-    height: 4rem;
+    height: 3rem;
     pointer-events: none;
     border-radius: 50%;
 }
@@ -48,13 +49,7 @@ body {
 }
 
 .ant-layout-content {
-  overflow: scroll;
-}
-
-.firststep-wrapper {
-  padding: 50px; 
-  
-  text-align: start;
+  min-height: calc(100vh - 250px);
 }
 
 .secondstep-wrapper {
@@ -76,7 +71,7 @@ body {
 }
 
 .steps {
-  margin-top: 16px;
+  padding-top: 16px;
   margin-bottom: 16px;
   text-align: left;
 }
