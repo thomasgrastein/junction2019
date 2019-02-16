@@ -70,7 +70,7 @@ class App extends Component {
         icon: <Icon type="camera" />,
         content: <FourthStep addCaptureToState={this.addCaptureToState} removeCaptureFromState={this.removeCaptureFromState}/>,
       }, {
-        title: 'Diagnosis',
+        title: 'Report',
         icon: <Icon type="file" />,
         content: <ThirdStep />,
       }, {
