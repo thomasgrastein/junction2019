@@ -104,8 +104,9 @@ body {
 .webcam-component {
   padding: 30px 50px;
   
-  p, h2 {
+  h2 {
     text-align: start;
+    margin-bottom: 24px;
   }
 
   p{
@@ -145,8 +146,6 @@ body {
   &:first-of-type {
     margin-top: 24px;
     padding-top: 24px;
-
-
   }
   
   &:not(:last-of-type) {

@@ -39,12 +39,13 @@ export default class FourthStep extends React.Component {
 
     return (
       <div className="webcam-component">
+        <h2>Take an optional picture of your wound, eczema, etc.</h2>
         <Webcam
           audio={false}
-          height={485}
+          height={395}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={860}
+          width={700}
           videoConstraints={videoConstraints}
         />
         <br/>
