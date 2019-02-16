@@ -2,6 +2,11 @@
 
 .App {
     text-align: center;
+    height: 100%;
+}
+
+body {
+  background: #f0f2f5;
 }
 
 .App-logo {
@@ -36,6 +41,11 @@
 .steps-content {
   border-radius: 6px;
   background-color: #fafafa;
+  overflow-x: scroll;
+}
+
+.ant-layout {
+  height:100%;
 }
 
 .firststep-wrapper {
@@ -46,7 +56,6 @@
 
 .secondstep-wrapper {
   padding: 50px;
-
   text-align: start;
 }
 
@@ -70,10 +79,6 @@
 }
 
 .steps-action {
-  margin-top: 24px;
-}
-
-.page-navi {
   margin-top: 24px;
 }
 
