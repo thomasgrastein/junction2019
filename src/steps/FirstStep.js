@@ -28,7 +28,7 @@ export default class FirstStep extends React.Component {
         this.setState({visible: !visible});
     }
 
-    getResultsFromZones = (locationId) => {
+    getSubCategoriesFromlocation = (locationId) => {
         const { working } = this.state;
         if(!working) {
             this.setState( {working: true});
@@ -63,7 +63,7 @@ export default class FirstStep extends React.Component {
                 </Row>
                 <Button type="primary" onClick={() => {
                     this.toggleModal();
-                    this.getResultsFromZones(15);
+                    this.getSubCategoriesFromlocation(15);
                 }}>
                     Open Modal
                 </Button>
