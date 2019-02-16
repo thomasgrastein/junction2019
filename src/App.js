@@ -70,7 +70,7 @@ class App extends Component {
     return (
       <div className="App">
         <Layout>
-          <Header className="App-header">
+          <Header className="App-header" style={{ position: "sticky", top: 0, zIndex: 10 }}>
                 <img src={logo} className="App-logo" alt="logo" />
           </Header>
           <Content>
@@ -88,7 +88,7 @@ class App extends Component {
             </Row>
 
           </Content>
-          <Footer style={{ position: 'absolute', width: '100%', bottom: 0 }}>
+          <Footer style={{ position: 'sticky', width: '100%', bottom: 0, zIndex: 10 }}>
           <Row className="page-navi" type="flex" justify="center">
                 <Col span={2}>
                     <Button type="primary" onClick={() => this.prev()} disabled={current === 0 ? true : false}><Icon type="left" />Previous</Button>
