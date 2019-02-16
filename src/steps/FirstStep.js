@@ -45,6 +45,23 @@ export default class FirstStep extends React.Component {
         }
     }
 
+    getSubSymptomsFromSubCategory = (subCategoryId) => {
+        const { working } = this.state;
+        if(!working) {
+            this.setState( {working: true});
+            fetch('https://priaid-symptom-checker-v1.p.rapidapi.com/symptoms/'+subCategoryId+'/man?language=en-gb', {
+                headers: {
+                    "X-RapidAPI-Key": "6f85909739mshe3c9795d32c34b8p10e5d4jsn9b9185621f4a"
+                }
+            }).then(res => res.json()).then(r => {
+                this.setState({ zones: r }, () => {
+                    console.log(r);
+                    this.setState({working: false});
+                })
+            })
+        }
+    }
+
     clicked = (area) => {
         console.log(area.id);
     }
