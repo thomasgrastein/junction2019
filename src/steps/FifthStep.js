@@ -43,26 +43,16 @@ export default class FifthStep extends React.Component {
 
   render() {
       return (
-          <div>
+          <div className="calendar-step">
+            <h2>Book an apointment</h2>
+            <p>If you haven't found what you haven't had your questions answered and want to have an consultation, you can now book an apointment here.</p>
             <DatePicker
               format="YYYY-MM-DD HH:mm"
               disabledDate={disabledDate}
               disabledTime={disabledDateTime}
               showTime={{ defaultValue: moment('00:00', 'HH:mm') }}
             />
-            <br />
-            <MonthPicker disabledDate={disabledDate} placeholder="Select month" />
-            <br />
-            <RangePicker
-              disabledDate={disabledDate}
-              disabledTime={disabledRangeTime}
-              showTime={{
-                hideDisabledOptions: true,
-                defaultValue: [moment('00:00', 'HH:mm'), moment('11:59', 'HH:mm')],
-              }}
-              format="YYYY-MM-DD HH:mm"
-             />
-            </div>
+          </div>
       )
   }
 }

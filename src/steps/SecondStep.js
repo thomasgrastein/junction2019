@@ -23,7 +23,7 @@ export default () => {
 
     return (
         <div className="secondstep-wrapper">
-            <h1>Describe your symptoms</h1>
+            <h2>Describe your symptoms</h2>
             <p>Try your best to answer the following questions.</p>
             <strong>How much pain to you experience (1 - 100)</strong>
             <Slider></Slider>

@@ -7,9 +7,10 @@ export default class SixthStep extends React.Component {
 
   render() {
       return (
-          <div>
-              <h1>Thanks</h1>
-              <h3>Your appointment has been booked!</h3>
+          <div className="typ">
+              <h2>Thanks</h2>
+              <p>Your appointment has been booked!</p>
+              <p>You will soon receive an email with an overview of the details of your online consultation.</p>
               <img src={doctor} alt="Doctor" width={500}/>
           </div>
       )
