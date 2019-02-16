@@ -8,7 +8,8 @@
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-image-mapper": "0.0.11",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "react-webcam": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
