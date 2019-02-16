@@ -17,23 +17,6 @@ function disabledDate(current) {
   return current && current < moment().startOf('day');
 }
 
-function fetchTimes(){
-    fetch('https://data-cache-datacache-calendar-v1.p.rapidapi.com/calendar/reserve', {
-        headers: {
-            "X-RapidAPI-Key": "6f85909739mshe3c9795d32c34b8p10e5d4jsn9b9185621f4a",
-            "Content-Type": "application/json",
-        },
-        body: {
-
-        }
-    }).then(res => res.json()).then(r => {
-        this.setState({ zones: r }, () => {
-            console.log(r);
-            this.setState({working: false});
-        })
-    })
-}
-
 
 function disabledDateTime() {
   return {
@@ -45,7 +28,9 @@ export default class FifthStep extends React.Component {
 
   render() {
       return (
-         <div>
+          <div className="calendar-step">
+            <h2>Book an apointment</h2>
+            <p>If you haven't found what you haven't had your questions answered and want to have an consultation, you can now book an apointment here.</p>
             <DatePicker
               format="YYYY-MM-DD HH:mm"
               disabledDate={disabledDate}
@@ -53,7 +38,7 @@ export default class FifthStep extends React.Component {
               showTime={{ format: 'HH:mm', minuteStep: '15' }}
             />
          </div>
-         <iframe src="https://www.supersaas.jp/schedule/SimonToft/Doktor" width="600" height="800"> </iframe>
+
       )
   }
 }
