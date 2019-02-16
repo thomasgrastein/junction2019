@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Layout, List, Steps, Row, Col, Icon } from 'antd';
-<<<<<<< HEAD
-import logo from './logo2.svg';
-import Webcam from "react-webcam";
-=======
 import logo from './Kenko.svg';
->>>>>>> 0b849498ddda23274d4be97371cfc3f8231d3a3a
 
 import FirstStep from './steps/FirstStep';
 import SecondStep from './steps/SecondStep';
@@ -29,7 +24,7 @@ class App extends Component {
     super();
     this.state = {
       pics: [],
-      current: 2,
+      current: 0,
     }
   }
 
@@ -56,17 +51,8 @@ class App extends Component {
   };
 
   sendImagesToFilio = () => {
-      let data = {"file": this.state.pics[0]};
-      fetch('https://Fileiostefan.skliarovV1.p.rapidapi.com/uploadFile', {
-          method: 'POST',
-          headers: {
-              "X-RapidAPI-Key": "6f85909739mshe3c9795d32c34b8p10e5d4jsn9b9185621f4a",
-              "Content-Type": "application/x-www-form-urlencoded",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
-          },
-          body: JSON.stringify(data)
-      }).then(r => console.log(r)).catch(e => console.log(e))
+      let data = this.state.pics[0];
+      console.log(data);
   }
 
 
