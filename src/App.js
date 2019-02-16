@@ -7,8 +7,6 @@ import SecondStep from './steps/SecondStep';
 import ThirdStep from './steps/ThirdStep';
 import FourthStep from './steps/FourthStep';
 
-import { ExampleFunction } from './Functions';
-
 import './App.scss';
 
 const {
@@ -17,16 +15,20 @@ const {
 const Step = Steps.Step;
 
 const steps = [{
-  title: 'First',
+  title: 'Point',
+    icon: <Icon type="user" />,
   content: <FirstStep />,
 }, {
-  title: 'Second',
+  title: 'Describe',
+  icon: <Icon type="form" />,
   content: <SecondStep />,
 }, {
-  title: 'Third',
+  title: 'Results',
+  icon: <Icon type="file" />,
   content: <ThirdStep />,
 }, {
-    title: 'Fourth',
+    title: 'Picture',
+    icon: <Icon type="camera" />,
     content: <FourthStep />,
 }];
 
