@@ -38,6 +38,7 @@ body {
 }
 
 .steps-content {
+  min-height: 572px;
   border-radius: 6px;
   background-color: #fafafa;
 }
@@ -128,11 +129,10 @@ body {
   text-align: start;
 
   p:last-of-type {
-    margin-bottom: 24px;
+    margin-bottom: 48px;
   }
 
   img {
     margin-bottom: 10px;
   }
-
 }
