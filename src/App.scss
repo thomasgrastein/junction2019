@@ -12,7 +12,7 @@ body {
 
 .App-logo {
     animation: App-logo-spin infinite 20s linear;
-    height: 4rem;
+    height: 3rem;
     pointer-events: none;
     border-radius: 50%;
 }
@@ -49,6 +49,10 @@ body {
   height:100%;
 }
 
+.ant-layout-content {
+  min-height: calc(100vh - 250px);
+}
+
 .secondstep-wrapper {
   padding: 50px;
   text-align: start;
@@ -62,7 +66,7 @@ body {
 }
 
 .steps {
-  margin-top: 16px;
+  padding-top: 16px;
   margin-bottom: 16px;
   text-align: left;
 }

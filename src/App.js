@@ -27,11 +27,11 @@ const steps = [{
   title: 'Third',
   content: <ThirdStep />,
 }, {
-    title: 'Fourth',
-    content: <FourthStep />,
+  title: 'Fourth',
+  content: <FourthStep />,
 }, {
-    title: 'Fifth',
-    content: <FifthStep />,
+  title: 'Fifth',
+  content: <FifthStep />,
 }];
 
 class App extends Component {
@@ -70,33 +70,35 @@ class App extends Component {
     return (
       <div className="App">
         <Layout>
-          <Header className="App-header" style={{ position: "sticky", top: 0, zIndex: 10 }}>
-                <img src={logo} className="App-logo" alt="logo" />
+          <Header style={{ position: "sticky", top: 0, zIndex: 10, marginBottom: 100 }}>
+            <div>
+              <img src={logo} className="App-logo" alt="logo" />
+            </div>
+            <Row className="steps" type="flex" justify="center" align="middle" style={{background: "#f0f2f5" }}>
+              <Col span={16}>
+                <Steps className="steps" current={current}>
+                  {steps.map(item => <Step key={item.title} title={item.title} icon={item.icon} />)}
+                </Steps>
+              </Col>
+            </Row>
           </Header>
           <Content>
-            <Row className="steps" type="flex" justify="center" align="middle">
-                <Col span={16}>
-                    <Steps className="steps" current={current}>
-                        {steps.map(item => <Step key={item.title} title={item.title} icon={item.icon} />)}
-                    </Steps>
-                </Col>
-            </Row>
             <Row type="flex" justify="center" align="middle">
-                <Col span={16}>
-                    <div className="steps-content">{steps[current].content}</div>
-                </Col>
+              <Col span={16}>
+                <div className="steps-content">{steps[current].content}</div>
+              </Col>
             </Row>
 
           </Content>
           <Footer style={{ position: 'sticky', width: '100%', bottom: 0, zIndex: 10 }}>
-          <Row className="page-navi" type="flex" justify="center">
-                <Col span={2}>
-                    <Button type="primary" onClick={() => this.prev()} disabled={current === 0 ? true : false}><Icon type="left" />Previous</Button>
-                </Col>
-                <Col span={1} />
-                <Col span={2}>
-                    <Button type="primary" onClick={() => this.next()}>{(current === steps.length - 1) ? "Finish" : "Next"} <Icon type="right" /></Button>
-                </Col>
+            <Row className="page-navi" type="flex" justify="center">
+              <Col span={2}>
+                <Button type="primary" onClick={() => this.prev()} disabled={current === 0 ? true : false}><Icon type="left" />Previous</Button>
+              </Col>
+              <Col span={1} />
+              <Col span={2}>
+                <Button type="primary" onClick={() => this.next()}>{(current === steps.length - 1) ? "Finish" : "Next"} <Icon type="right" /></Button>
+              </Col>
             </Row>
           </Footer>
         </Layout>
