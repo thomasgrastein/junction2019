@@ -101,7 +101,7 @@ export default class FirstStep extends React.Component {
                         <h2>Please point out the body parts where you feel pain or discomfort</h2>
                         <p>On the body to the right you can mark, where you feel pain or discomfort. If you find it hard to specific look at the dropdown for other options.</p>
                     </Col>
-                    <Col className="firststep-body" style={{ "width": "50%" }}>
+                    <Col className="firststep-body" style={{ "width": "50%", marginTop: -50, marginBottom: -40 }}>
                         <ImageMapper
                             className="mapper"
                             src={body}
