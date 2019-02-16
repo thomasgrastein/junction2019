@@ -6,15 +6,27 @@ export default () => {
     const CheckboxGroup = Checkbox.Group;
     const plainOptions = ['Yes', 'No'];
     const Option = Select.Option;
-    const children = [];
+    const children = [
+        <Option value="walk">Walking</Option>,
+        <Option value="talk">Talking</Option>,
+        <Option value="run">Running</Option>,
+        <Option value="eat">Eating</Option>,
+        <Option value="swallow">Swallowing</Option>,
+        <Option value="breath">Breathing</Option>,
+        <Option value="stand">Standing</Option>,
+        <Option value="sit">Sitting</Option>,
+        <Option value="laying">Laying down</Option>,
+        <Option value="rotation">Body rotation</Option>,
+        <Option value="pee">Peeing</Option>,
+        <Option value="poop">Pooping</Option>,
+        <Option value="lift">Lifting</Option>,
+        <Option value="all">All the time</Option>,
+    ];
     const { TextArea } = Input;
+    const { MonthPicker } = DatePicker;
 
     function onChange(checkedValues) {
         console.log('checked = ', checkedValues);
-    }
-    
-    for (let i = 10; i < 36; i++) {
-        children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
     }
 
     function handleChange(value) {
@@ -29,11 +41,13 @@ export default () => {
             <Slider></Slider>
             <strong>Have you experienced this before?</strong>
             <br></br>
-            <strong>When did you experience it for the first time?</strong>
-            <br></br>
             <CheckboxGroup options={plainOptions} onChange={onChange} /> 
             <br></br>
-            <strong>When do you experince this problem?</strong>
+            <strong>When did you experience it for the first time?</strong>
+            <br/>
+            <MonthPicker placeholder="Select Month" />
+            <br/>
+            <strong>Under which activities do you experience this? (Choose one or more)</strong>
             <Select
                 mode="tags"
                 style={{ width: '100%' }}
