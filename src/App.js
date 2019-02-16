@@ -6,6 +6,7 @@ import FirstStep from './steps/FirstStep';
 import SecondStep from './steps/SecondStep';
 import ThirdStep from './steps/ThirdStep';
 import FourthStep from './steps/FourthStep';
+import FifthStep from './steps/FifthStep';
 
 import './App.scss';
 
@@ -30,6 +31,9 @@ const steps = [{
     title: 'Picture',
     icon: <Icon type="camera" />,
     content: <FourthStep />,
+}, {
+    title: 'Fifth',
+    content: <FifthStep />,
 }];
 
 class App extends Component {
@@ -84,23 +88,18 @@ class App extends Component {
                     <div className="steps-content">{steps[current].content}</div>
                 </Col>
             </Row>
-            <List>
-              {zones ? zones.map((e, k) =>
-                <List.Item key={k}>{e.Name}</List.Item>
-              ) : null}
-            </List>
-            <Row className="page-navi" type="flex" justify="center">
+
+          </Content>
+          <Footer>
+          <Row className="page-navi" type="flex" justify="center">
                 <Col span={2}>
                     <Button type="primary" onClick={() => this.prev()} disabled={current === 0 ? true : false}><Icon type="left" />Previous</Button>
                 </Col>
-
+                <Col span={1} />
                 <Col span={2}>
                     <Button type="primary" onClick={() => this.next()}>{(current === steps.length - 1) ? "Finish" : "Next"} <Icon type="right" /></Button>
                 </Col>
             </Row>
-          </Content>
-          <Footer>
-           
           </Footer>
         </Layout>
       </div>
