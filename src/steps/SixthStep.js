@@ -5,6 +5,7 @@ import doctor from './doctor.jpg';
 export default class SixthStep extends React.Component {
 
 
+
   render() {
       return (
           <div className="typ">

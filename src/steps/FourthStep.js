@@ -19,14 +19,15 @@ export default class FourthStep extends React.Component {
     this.setState({
         imageData : [...this.state.imageData, imageSrc]
     })
+    this.props.addCaptureToState(imageSrc);
   };
 
   delete = (e) => {
       this.setState(prevState => ({
           imageData: prevState.imageData.filter(image => image !== e)
       }));
+      this.props.deleteCaptureFromState(e);
   };
-
 
   render() {
     const videoConstraints = {
