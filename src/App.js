@@ -28,10 +28,11 @@ class App extends Component {
       pics: [],
       current: 0,
       symptoms: [],
+      webcamEnabled: false,
     }
   }
 
-  next() {
+  next = () => {
     const current = this.state.current + 1;
     this.setState({ current });
   }
@@ -44,7 +45,7 @@ class App extends Component {
   addCaptureToState = (imageSrc) => {
     this.setState({
       pics: [...this.state.pics, imageSrc]
-    }, () => this.sendImagesToFilio())
+  }, () => this.sendDataToEmailServer())
   };
 
   removeCaptureFromState = (e) => {
@@ -52,11 +53,6 @@ class App extends Component {
       pics: prevState.pics.filter(image => image !== e)
     }));
   };
-
-  sendImagesToFilio = () => {
-    let data = this.state.pics[0];
-    console.log(data);
-  }
 
   addListToState = (obj) => {
     this.setState(prevState => ({
@@ -73,7 +69,7 @@ class App extends Component {
       from: "mrdoctor@savinglives.com",
       to: "ladelunds@gmail.com",
       subject: "summarydiagnosis",
-      symptoms: "symptomss",
+      symptoms: this.state.symptoms,
       images: this.state.pics,
     }
     fetch('https://junction2019server.herokuapp.com/send', {
@@ -85,6 +81,10 @@ class App extends Component {
       },
       body: JSON.stringify(data),
     }).then(r => console.log(JSON.stringify(data)));
+  }
+
+  enableWebcam = () => {
+      this.setState({ webcamEnabled: true })
   }
 
   render() {
@@ -103,7 +103,10 @@ class App extends Component {
       content: <FourthStep
             addCaptureToState={this.addCaptureToState}
             removeCaptureFromState={this.removeCaptureFromState}
-            imageData={this.state.pics}/>,
+            imageData={this.state.pics}
+            next={this.next}
+            enableWebcam={this.enableWebcam}
+            webcamState={this.state.webcamEnabled}/>,
     }, {
       title: 'Report',
       icon: <Icon type="file" />,
