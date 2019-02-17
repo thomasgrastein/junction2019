@@ -55,7 +55,7 @@ class App extends Component {
         message.error("Age and gender must be submitted");
         return;
       };
-    } 
+    }
     const newCurrent = current + 1;
     this.setState({ current: newCurrent });
   }
@@ -72,7 +72,7 @@ class App extends Component {
     }
     this.setState({
       pics: [...this.state.pics, image]
-  }, () => this.sendDataToEmailServer())
+  })
   };
 
   removeCaptureFromState = (e) => {
@@ -157,7 +157,7 @@ class App extends Component {
     }, {
       title: 'Done',
       icon: <Icon type="smile" />,
-      content: <SixthStep />
+      content: <SixthStep sendEmail={this.sendDataToEmailServer} />
     }];
 
     return (
