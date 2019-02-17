@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Layout, List, Steps, Row, Col, Icon } from 'antd';
-<<<<<<< HEAD
 
 import Webcam from "react-webcam";
 
 import logo from './Kenko.svg';
 
-=======
-import logo from './Kenko.svg';
->>>>>>> 11648654a88b885b3d35252b4802ae0a958e604f
 
 import FirstStep from './steps/FirstStep';
 import SecondStep from './steps/SecondStep';
@@ -58,7 +54,6 @@ class App extends Component {
       }));
   };
 
-<<<<<<< HEAD
   sendDataToEmailServer = () => {
       let data = {
           from: "mrdoctor@savinglives.com",
@@ -76,11 +71,6 @@ class App extends Component {
           },
           body: JSON.stringify(data),
       }).then(r => console.log(JSON.stringify(data)));
-=======
-  sendImagesToFilio = () => {
-      let data = this.state.pics[0];
-      console.log(data);
->>>>>>> 11648654a88b885b3d35252b4802ae0a958e604f
   }
 
   render() {
