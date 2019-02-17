@@ -11,6 +11,7 @@ export default class FirstStep extends React.Component {
         this.state = {
             zones: null,
             loading: true,
+            secLoading: false,
             selectedBodypart: null,
             selectedSubBodyPart: null,
             children: null,
@@ -34,12 +35,12 @@ export default class FirstStep extends React.Component {
     };
 
     renderCategory = () => {
-        const { zones, children } = this.state;
+        const { zones, children, secLoading } = this.state;
         return (
             <div>
                 <Select defaultValue={"placeholder"} required style={{ width: "100%" }} onChange={(e) => {
                     this.getSymptomsFromSubCategory(e);
-                    this.setState({ selectedSubBodyPart: e });
+                    this.setState({ selectedSubBodyPart: e, secLoading: true });
                 }}>
                     <Option value={"placeholder"} disabled>Select bodypart</Option>
                     {zones.map((v, k) => {
@@ -52,6 +53,7 @@ export default class FirstStep extends React.Component {
                     placeholder="Select by pressing here"
                     onChange={e => this.setState({ selectedSymptoms: e })}
                     disabled={children ? false : true}
+                    loading={secLoading}
                 >
                     {children ? children.map((v, k) => {
                         return <Option key={k} value={v.ID + ''}>{v.Name}</Option>
@@ -95,7 +97,7 @@ export default class FirstStep extends React.Component {
             r.forEach(e => {
                 arr.push(e);
             });
-            this.setState({ children: arr });
+            this.setState({ children: arr, secLoading: false });
         })
     }
 
