@@ -25,6 +25,7 @@ class App extends Component {
     this.state = {
       pics: [],
       current: 0,
+      symptoms: [],
     }
   }
 
@@ -40,50 +41,59 @@ class App extends Component {
 
   addCaptureToState = (imageSrc) => {
     this.setState({
-        pics: [...this.state.pics, imageSrc]
+      pics: [...this.state.pics, imageSrc]
     }, () => this.sendImagesToFilio())
   };
 
   removeCaptureFromState = (e) => {
-      this.setState(prevState => ({
-          pics: prevState.pics.filter(image => image !== e)
-      }));
+    this.setState(prevState => ({
+      pics: prevState.pics.filter(image => image !== e)
+    }));
   };
 
   sendImagesToFilio = () => {
-      let data = this.state.pics[0];
-      console.log(data);
+    let data = this.state.pics[0];
+    console.log(data);
   }
 
+  addListToState = (obj) => {
+    this.setState(prevState => ({
+      symptoms: [...prevState.symptoms, obj]
+    }));
+  }
+
+  updateListInState = (arr) => {
+    this.setState({symptoms: arr});
+  }
 
   render() {
-      let steps = [{
-        title: 'Point',
-          icon: <Icon type="user" />,
-        content: <FirstStep />,
-      }, {
-        title: 'Describe',
-        icon: <Icon type="form" />,
-        content: <SecondStep />,
-      }, {
-        title: 'Camera',
-        icon: <Icon type="camera" />,
-        content: <FourthStep addCaptureToState={this.addCaptureToState} removeCaptureFromState={this.removeCaptureFromState}/>,
-      }, {
-        title: 'Report',
-        icon: <Icon type="file" />,
-        content: <ThirdStep />,
-      }, {
-          title: 'Book',
-          icon: <Icon type="calendar" />,
-          content: <FifthStep/>,
-      }, {
-          title: 'Done',
-          icon: <Icon type="smile" />,
-          content: <SixthStep/>
-      }];
+    const { current, symptoms } = this.state;
+    let steps = [{
+      title: 'Point',
+      icon: <Icon type="user" />,
+      content: <FirstStep addListToState={this.addListToState} updateListInState={this.updateListInState} symptoms={symptoms} />,
+    }, {
+      title: 'Describe',
+      icon: <Icon type="form" />,
+      content: <SecondStep />,
+    }, {
+      title: 'Picture',
+      icon: <Icon type="camera" />,
+      content: <FourthStep addCaptureToState={this.addCaptureToState} removeCaptureFromState={this.removeCaptureFromState} />,
+    }, {
+      title: 'Report',
+      icon: <Icon type="file" />,
+      content: <ThirdStep />,
+    }, {
+      title: 'Book',
+      icon: <Icon type="calendar" />,
+      content: <FifthStep />,
+    }, {
+      title: 'Done',
+      icon: <Icon type="smile" />,
+      content: <SixthStep />
+    }];
 
-    const { current } = this.state;
     return (
       <div className="App">
         <Layout>
@@ -91,7 +101,7 @@ class App extends Component {
             <div>
               <img src={logo} className="App-logo" alt="logo" />
             </div>
-            <Row className="steps" type="flex" justify="center" align="middle" style={{background: "#f0f2f5" }}>
+            <Row className="steps" type="flex" justify="center" align="middle" style={{ background: "#f0f2f5" }}>
               <Col span={16}>
                 <Steps className="steps" current={current}>
                   {steps.map(item => <Step key={item.title} title={item.title} icon={item.icon} />)}

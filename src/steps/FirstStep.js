@@ -1,14 +1,13 @@
 import React from 'react';
-import { Modal, Row, Col, Spin, Select, Button, List, Card, Popover } from 'antd';
+import { Modal, Row, Col, Spin, Select, Button, List, Card } from 'antd';
 import body from './body.svg';
 import ImageMapper from 'react-image-mapper';
-import { list } from 'postcss';
 
 const Option = Select.Option;
 
 export default class FirstStep extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             zones: null,
             loading: true,
@@ -16,7 +15,7 @@ export default class FirstStep extends React.Component {
             selectedSubBodyPart: null,
             children: null,
             selectedSymptoms: null,
-            listOf: [],
+            listOf: this.props.symptoms,
         }
     }
 
@@ -40,7 +39,7 @@ export default class FirstStep extends React.Component {
             <div>
                 <Select defaultValue={"placeholder"} required style={{ width: "100%" }} onChange={(e) => {
                     this.getSymptomsFromSubCategory(e);
-                    this.setState({ selectedSubBodyPart: e })
+                    this.setState({ selectedSubBodyPart: e });
                 }}>
                     <Option value={"placeholder"} disabled>Select bodypart</Option>
                     {zones.map((v, k) => {
@@ -63,7 +62,7 @@ export default class FirstStep extends React.Component {
     };
 
     submitModal = () => {
-        const { selectedSymptoms, children, zones, selectedSubBodyPart, listOf } = this.state;
+        const { selectedSymptoms, children, zones, selectedSubBodyPart } = this.state;
         let arr = [];
         selectedSymptoms.forEach(e => {
             arr.push(this.findArrayElementById(children, parseInt(e)));
@@ -73,7 +72,7 @@ export default class FirstStep extends React.Component {
             listOf: [...prevState.listOf, obj],
             visible: false
         }));
-        console.log(obj);
+        this.props.addListToState(obj);
     }
 
     getSubCategoriesFromLocation = (locationId) => {
@@ -121,6 +120,7 @@ export default class FirstStep extends React.Component {
         let arr = listOf;
         arr.splice(index, 1);
         this.setState({listOf: arr});
+        this.props.updateListInState(arr);
     }
 
     render() {
@@ -149,7 +149,7 @@ export default class FirstStep extends React.Component {
                         >
                             {listOf ? listOf.map((v, k) => (
                                 <List.Item key={k}>
-                                    <Card size="small" extra={<a href="#" onClick={() => this.removeCard(v)}>Remove</a>} title={v.subBodyPart.Name}>{this.convertToString(v.symptoms)}</Card>
+                                    <Card size="small" extra={<a href="#" style={{color: "red"}} onClick={() => this.removeCard(v)}>Remove</a>} title={v.subBodyPart.Name}>{this.convertToString(v.symptoms)}</Card>
                                 </List.Item>
                             )) : null}
                         </List>
@@ -170,8 +170,9 @@ export default class FirstStep extends React.Component {
                     visible={visible}
                     onOk={this.submitModal}
                     onCancel={this.closeModal}
+                    style={{ textAlign: 'center' }}
                 >
-                    {loading ? <Spin size="large" style={{ textAlign: 'center' }} />
+                    {loading ? <Spin size="large" />
                         :
                         zones ? this.renderCategory()
                             : null}
