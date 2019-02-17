@@ -173,11 +173,11 @@ class App extends Component {
           <Footer style={{ position: 'sticky', width: '100%', bottom: 0, zIndex: 10 }}>
             <Row className="page-navi" type="flex" justify="center">
               <Col span={2}>
-                <Button type="primary" onClick={() => this.prev()} disabled={current === 0 ? true : false}><Icon type="left" />Previous</Button>
+                <Button className="button-prev" type="primary" onClick={() => this.prev()} disabled={current === 0 ? true : false}><Icon type="left" />Previous</Button>
               </Col>
               <Col span={1} />
               <Col span={2}>
-                <Button type="primary" onClick={() => this.next()}>{(current === steps.length - 1) ? "Finish" : "Next"} <Icon type="right" /></Button>
+                <Button className="button-next" type="primary" onClick={() => this.next()}>{(current === steps.length - 1) ? "Finish" : "Next"} <Icon type="right" /></Button>
               </Col>
             </Row>
           </Footer>

@@ -41,6 +41,21 @@ export default class ThirdStep extends React.Component {
         })*/
     }
 
+    renderDiagnosis = () => {
+        const { diagnosis } = this.state;
+        if (diagnosis.length > 0) {
+            return diagnosis.map((v, k) => (
+                <div className="progress" key={k}>
+                    <Progress className="progress-bar" type="circle" percent={v.Issue.Accuracy.toFixed(1)}></Progress>
+                    <div className="diagnosis-disc">
+                        <h3>{v.Issue.Name}</h3>
+                        <p>Lorem ipsum dolor amet tilde messenger bag prism cred. Tote bag street art tattooed, fingerstache sustainable stumptown kickstarter meditation bitters ethical skateboard tilde cold-pressed waistcoat tacos. Lyft paleo blue bottle stumptown. Synth brooklyn pabst asymmetrical helvetica poke four loko banh mi </p>
+                    </div>
+                </div>
+            ));
+        }
+    }
+
     render() {
         const { loading } = this.state;
         return (
@@ -50,27 +65,7 @@ export default class ThirdStep extends React.Component {
 
                 {!loading ?
                     <div>
-                        <div className="progress">
-                            <Progress className="progress-bar" type="circle" percent={75}></Progress>
-                            <div className="diagnosis-disc">
-                                <h3>Cancer</h3>
-                                <p>Lorem ipsum dolor amet tilde messenger bag prism cred. Tote bag street art tattooed, fingerstache sustainable stumptown kickstarter meditation bitters ethical skateboard tilde cold-pressed waistcoat tacos. Lyft paleo blue bottle stumptown. Synth brooklyn pabst asymmetrical helvetica poke four loko banh mi </p>
-                            </div>
-                        </div>
-                        <div className="progress">
-                            <Progress className="progress-bar" type="circle" percent={99}></Progress>
-                            <div className="diagnosis-disc">
-                                <h3>blævermås</h3>
-                                <p>Lorem ipsum dolor amet tilde messenger bag prism cred. Tote bag street art tattooed, fingerstache sustainable stumptown kickstarter meditation bitters ethical skateboard tilde cold-pressed waistcoat tacos. Lyft paleo blue bottle stumptown. Synth brooklyn pabst asymmetrical helvetica poke four loko banh mi </p>
-                            </div>
-                        </div>
-                        <div className="progress">
-                            <Progress className="progress-bar" type="circle" percent={20}></Progress>
-                            <div className="diagnosis-disc">
-                                <h3>Spand</h3>
-                                <p>Lorem ipsum dolor amet tilde messenger bag prism cred. Tote bag street art tattooed, fingerstache sustainable stumptown kickstarter meditation bitters ethical skateboard tilde cold-pressed waistcoat tacos. Lyft paleo blue bottle stumptown. Synth brooklyn pabst asymmetrical helvetica poke four loko banh mi </p>
-                            </div>
-                        </div>
+                        {this.renderDiagnosis()}
                     </div>
                     :
                     <Spin size="large" style={{ textAlign: "center", "width": "100%" }} />}
