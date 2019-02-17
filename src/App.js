@@ -81,7 +81,7 @@ class App extends Component {
   sendDataToEmailServer = () => {
     let data = {
       from: "mrdoctor@savinglives.com",
-      to: "ladelunds@gmail.com",
+      to: "au2019.junction2019@gmail.com",
       subject: "summarydiagnosis",
       symptoms: this.state.symptoms,
       images: this.state.pics,
