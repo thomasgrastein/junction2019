@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Layout, Steps, Row, Col, Icon } from 'antd';
 import logo from './Kenko.svg';
+
+import { Button, Layout, List, Steps, Row, Col, Icon } from 'antd';
+
+import logo from './Kenko.svg';
+
 
 import FirstStep from './steps/FirstStep';
 import SecondStep from './steps/SecondStep';
@@ -63,7 +67,26 @@ class App extends Component {
   }
 
   updateListInState = (arr) => {
-    this.setState({symptoms: arr});
+    this.setState({ symptoms: arr });
+  }
+
+  sendDataToEmailServer = () => {
+    let data = {
+      from: "mrdoctor@savinglives.com",
+      to: "ladelunds@gmail.com",
+      subject: "summarydiagnosis",
+      symptoms: "symptomss",
+      images: this.state.pics,
+    }
+    fetch('https://junction2019server.herokuapp.com/send', {
+      method: "POST",
+      mode: 'no-cors',
+      header: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then(r => console.log(JSON.stringify(data)));
   }
 
   render() {
