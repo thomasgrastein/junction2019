@@ -17,6 +17,11 @@ export default class SixthStep extends React.Component {
         }
     }
 
+    componentDidMount = () => {
+        this.props.sendEmail();
+        console.log("print");
+    }
+
     render(){
         const {mp3} = this.state;
         return (

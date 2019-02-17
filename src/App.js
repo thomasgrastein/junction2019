@@ -75,7 +75,7 @@ class App extends Component {
     }
     this.setState({
       pics: [...this.state.pics, image]
-  }, () => this.sendDataToEmailServer())
+  })
   };
 
   removeCaptureFromState = (e) => {
@@ -160,7 +160,7 @@ class App extends Component {
     }, {
       title: 'Done',
       icon: <Icon type="smile" />,
-      content: <SixthStep />
+      content: <SixthStep sendEmail={this.sendDataToEmailServer} />
     }];
 
     return (
