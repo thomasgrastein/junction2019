@@ -3,10 +3,10 @@ import Webcam from "react-webcam";
 import { Button } from 'antd';
 
 export default class FourthStep extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      imageData: [],
+      imageData: props.imageData,
     }
   }
 
@@ -35,6 +35,7 @@ export default class FourthStep extends React.Component {
       height: 720,
       facingMode: "user"
     };
+
 
     return (
       <div className="webcam-component">

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Layout, List, Steps, Row, Col, Icon } from 'antd';
-<<<<<<< HEAD
-import logo from './logo2.svg';
+
 import Webcam from "react-webcam";
-=======
+
 import logo from './Kenko.svg';
->>>>>>> 0b849498ddda23274d4be97371cfc3f8231d3a3a
+
 
 import FirstStep from './steps/FirstStep';
 import SecondStep from './steps/SecondStep';
@@ -46,7 +45,7 @@ class App extends Component {
   addCaptureToState = (imageSrc) => {
     this.setState({
         pics: [...this.state.pics, imageSrc]
-    }, () => this.sendImagesToFilio())
+    }, () => this.sendDataToEmailServer())
   };
 
   removeCaptureFromState = (e) => {
@@ -55,20 +54,24 @@ class App extends Component {
       }));
   };
 
-  sendImagesToFilio = () => {
-      let data = {"file": this.state.pics[0]};
-      fetch('https://Fileiostefan.skliarovV1.p.rapidapi.com/uploadFile', {
-          method: 'POST',
-          headers: {
-              "X-RapidAPI-Key": "6f85909739mshe3c9795d32c34b8p10e5d4jsn9b9185621f4a",
-              "Content-Type": "application/x-www-form-urlencoded",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+  sendDataToEmailServer = () => {
+      let data = {
+          from: "mrdoctor@savinglives.com",
+          to: "ladelunds@gmail.com",
+          subject: "summarydiagnosis",
+          symptoms: "symptomss",
+          images: this.state.pics,
+      }
+      fetch ('https://junction2019server.herokuapp.com/send',{
+          method: "POST",
+          mode: 'no-cors',
+          header: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data)
-      }).then(r => console.log(r)).catch(e => console.log(e))
+          body: JSON.stringify(data),
+      }).then(r => console.log(JSON.stringify(data)));
   }
-
 
   render() {
       let steps = [{
@@ -82,7 +85,10 @@ class App extends Component {
       }, {
         title: 'Camera',
         icon: <Icon type="camera" />,
-        content: <FourthStep addCaptureToState={this.addCaptureToState} removeCaptureFromState={this.removeCaptureFromState}/>,
+        content: <FourthStep
+            addCaptureToState={this.addCaptureToState}
+            removeCaptureFromState={this.removeCaptureFromState}
+            imageData={this.state.pics}/>,
       }, {
         title: 'Diagnosis',
         icon: <Icon type="file" />,
