@@ -55,7 +55,10 @@ class App extends Component {
         message.error("Age and gender must be submitted");
         return;
       };
-    } 
+    }
+    if (current === 5) {
+      return;
+    }
     const newCurrent = current + 1;
     this.setState({ current: newCurrent });
   }
@@ -190,7 +193,11 @@ class App extends Component {
               </Col>
               <Col span={1} />
               <Col span={2}>
-                <Button className="button-next" type="primary" onClick={() => this.next()}>{(current === steps.length - 1) ? "Finish" : "Next"} <Icon type="right" /></Button>
+                {current === 5 ?
+                null
+                :
+                <Button className="button-next" type="primary" onClick={() => this.next()}>{(current === steps.length - 2) ? "Finish" : "Next"} <Icon type="right" /></Button>
+                }
               </Col>
             </Row>
           </Footer>
