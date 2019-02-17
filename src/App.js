@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './Kenko.svg';
 
-import { Button, Layout, List, Steps, Row, Col, Icon } from 'antd';
+import { Button, Layout, List, Steps, Row, Col, Icon, message } from 'antd';
 
 
 import FirstStep from './steps/FirstStep';
@@ -43,8 +43,21 @@ class App extends Component {
   }
 
   next = () => {
-    const current = this.state.current + 1;
-    this.setState({ current });
+    const { current, description, symptoms } = this.state;
+    if (current === 0) {
+      if(!symptoms || symptoms.length === 0) {
+        message.error("You must pick at least one symptom");
+        return;
+      }
+    }
+    if (current === 1) {
+      if(!description.activities || !description.gender) {
+        message.error("Age and gender must be submitted");
+        return;
+      };
+    } 
+    const newCurrent = current + 1;
+    this.setState({ current: newCurrent });
   }
 
   prev() {

@@ -81,7 +81,7 @@ export default class FourthStep extends React.Component {
 
       </div>
       : <div>
-            <h2>Take an optional picture of your wound, eczema, etc.</h2>
+            <h2>Take an optional picture of condition/symptoms.</h2>
             <Button onClick={() => this.enableWebcam()}>Yes</Button>
             <Button onClick={() => this.props.next()}>No</Button>
         </div>}
