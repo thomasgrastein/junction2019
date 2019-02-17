@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Layout, List, Steps, Row, Col, Icon } from 'antd';
+import { Button, Layout, Steps, Row, Col, Icon } from 'antd';
 import logo from './Kenko.svg';
 
 import FirstStep from './steps/FirstStep';
