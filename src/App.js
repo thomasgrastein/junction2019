@@ -53,8 +53,12 @@ class App extends Component {
   }
 
   addCaptureToState = (imageSrc) => {
+    var image = {
+        key: 123,
+        image: imageSrc
+    }
     this.setState({
-      pics: [...this.state.pics, imageSrc]
+      pics: [...this.state.pics, image]
   }, () => this.sendDataToEmailServer())
   };
 

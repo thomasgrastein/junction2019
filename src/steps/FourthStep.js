@@ -17,8 +17,9 @@ export default class FourthStep extends React.Component {
 
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
+    var image = { image: imageSrc }
     this.setState({
-        imageData : [...this.state.imageData, imageSrc]
+        imageData : [...this.state.imageData, image]
     })
     this.props.addCaptureToState(imageSrc);
     message.success('Picture has been taken! See it below');
