@@ -7,7 +7,7 @@ export default class FourthStep extends React.Component {
     super(props);
     this.state = {
       imageData: props.imageData,
-      taking: false
+      webcamEnabled: props.webcamState,
     }
   }
 
@@ -28,11 +28,15 @@ export default class FourthStep extends React.Component {
       this.setState(prevState => ({
           imageData: prevState.imageData.filter(image => image !== e)
       }));
-      this.props.deleteCaptureFromState(e);
+      this.props.removeCaptureFromState(e);
   };
 
+  enableWebcam = () => {
+      this.setState({ webcamEnabled: true })
+      this.props.enableWebcam();
+  }
+
   render() {
-    const { taking } = this.state;
     const videoConstraints = {
       width: 1280,
       height: 720,
@@ -40,13 +44,21 @@ export default class FourthStep extends React.Component {
     };
 
     return (
-      <div className="webcam-component" style={{opacity: taking ? 0.1 : 1}}>
-        <h2>Take an optional picture of your wound, eczema, etc.</h2>
+    <div>
+     {this.state.webcamEnabled ?
+      <div className="webcam-component">
+        <h2>Take picture</h2>
         <Webcam
           audio={false}
           height={395}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
+          style={{
+            MozTransform: 'scale(-1, 1)',
+            WebkitTransform: 'scale(-1, 1)',
+            OTransform: 'scale(-1, 1)',
+            transform: 'scale(-1, 1)'
+          }}
           width={700}
           videoConstraints={videoConstraints}
         />
@@ -68,6 +80,12 @@ export default class FourthStep extends React.Component {
         : null }
 
       </div>
+      : <div>
+            <h2>Take an optional picture of your wound, eczema, etc.</h2>
+            <Button onClick={() => this.enableWebcam()}>Yes</Button>
+            <Button onClick={() => this.props.next()}>No</Button>
+        </div>}
+    </div>
     );
   }
 }
