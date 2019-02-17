@@ -3,11 +3,11 @@ import Webcam from "react-webcam";
 import { Button, message } from 'antd';
 
 export default class FourthStep extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      imageData: [],
-      taking: false,
+      imageData: props.imageData,
+      taking: false
     }
   }
 

@@ -100,7 +100,10 @@ class App extends Component {
     }, {
       title: 'Picture',
       icon: <Icon type="camera" />,
-      content: <FourthStep addCaptureToState={this.addCaptureToState} removeCaptureFromState={this.removeCaptureFromState} />,
+      content: <FourthStep
+            addCaptureToState={this.addCaptureToState}
+            removeCaptureFromState={this.removeCaptureFromState}
+            imageData={this.state.pics}/>,
     }, {
       title: 'Report',
       icon: <Icon type="file" />,
