@@ -51,7 +51,7 @@ export default () => {
             <Select
                 mode="tags"
                 style={{ width: '100%' }}
-                placeholder="Tags Mode"
+                placeholder="Select by pressing here"
                 onChange={handleChange}
             >
                 {children}

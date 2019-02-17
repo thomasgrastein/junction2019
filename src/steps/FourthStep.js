@@ -1,6 +1,6 @@
 import React from 'react';
 import Webcam from "react-webcam";
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 
 export default class FourthStep extends React.Component {
   constructor(props) {
@@ -20,6 +20,7 @@ export default class FourthStep extends React.Component {
         imageData : [...this.state.imageData, imageSrc]
     })
     this.props.addCaptureToState(imageSrc);
+    message.success('Picture has been taking! See it below');
   };
 
   delete = (e) => {
@@ -39,12 +40,13 @@ export default class FourthStep extends React.Component {
 
     return (
       <div className="webcam-component">
+        <h2>Take an optional picture of your wound, eczema, etc.</h2>
         <Webcam
           audio={false}
-          height={485}
+          height={395}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={860}
+          width={700}
           videoConstraints={videoConstraints}
         />
         <br/>
