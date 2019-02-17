@@ -21,7 +21,7 @@ export default class FourthStep extends React.Component {
         imageData : [...this.state.imageData, imageSrc]
     })
     this.props.addCaptureToState(imageSrc);
-    message.success('Picture has been taking! See it below');
+    message.success('Picture has been taken! See it below');
   };
 
   delete = (e) => {
@@ -37,6 +37,7 @@ export default class FourthStep extends React.Component {
   }
 
   render() {
+    const { taking } = this.state;
     const videoConstraints = {
       width: 1280,
       height: 720,
@@ -48,6 +49,8 @@ export default class FourthStep extends React.Component {
      {this.state.webcamEnabled ?
       <div className="webcam-component">
         <h2>Take picture</h2>
+      <div className="webcam-component" style={{opacity: taking ? 0.1 : 1}}>
+        <h2>Take an optional picture of your wound, eczema, etc.</h2>
         <Webcam
           audio={false}
           height={395}
