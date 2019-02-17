@@ -23,7 +23,7 @@ export default class ThirdStep extends React.Component {
                     str += s.ID + "%2C";
                 });
             });
-            fetch('https://priaid-symptom-checker-v1.p.rapidapi.com/diagnosis?symptoms=%5B' + str.substr(0,str.length-3) + '%5D&gender=' + description.gender + '&year_of_birth=' + description.age + '&language=en-gb', {
+            fetch('https://priaid-symptom-checker-v1.p.rapidapi.com/diagnosis?symptoms=%5B' + str.substr(0, str.length - 3) + '%5D&gender=' + description.gender + '&year_of_birth=' + description.age + '&language=en-gb', {
                 headers: {
                     "X-RapidAPI-Key": "6f85909739mshe3c9795d32c34b8p10e5d4jsn9b9185621f4a"
                 }
@@ -53,7 +53,13 @@ export default class ThirdStep extends React.Component {
                     </div>
                 </div>
             ));
-        }
+        } else {
+            return (
+            <div>
+                <h1>We could not find any diagnosis based on your symptoms</h1>
+                <h3>Perhaps your symptoms are not related. Please proceed to booking.</h3>
+            </div>
+            )}
     }
 
     render() {
