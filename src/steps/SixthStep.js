@@ -62,19 +62,17 @@ export default class SixthStep extends React.Component {
         return (
             <div className="typ">
                 <Row type="flex">
-                <Col style={{ "width": "50%", paddingRight:20 }}>
-                    <h2>{h2text}</h2>
-                <h4>{p1text}!</h4>
-                <p>{p2text}</p>
-                    <p>{p3text}</p>
-                {translationRexeg}
-                <p>We hope that you found the consultation helpful, please rate your experience below!</p>
-                    <Rate character={<Icon type="smile" />} allowHalf></Rate>
-                </Col>
-                <Col style={{ "width": "50%" }}>
-                    <img src={doctor} alt="Doctor" style={{"width":"100%"}} />
-                </Col>
-            </Row>
+                    <Col style={{ "width": "50%", paddingRight:20 }}>
+                        <h2>{h2text}</h2>
+                        <h4>{p1text}!</h4>
+                        <p>{p2text}</p>
+                        <p>{p3text}</p>
+                        <Rate character={<Icon type="smile" />} allowHalf></Rate>
+                    </Col>
+                    <Col style={{ "width": "50%" }}>
+                        <img src={doctor} alt="Doctor" style={{"width":"100%"}} />
+                    </Col>
+                </Row>
                 <button onClick={() => this.getTextToSpeech(translationRexeg)}>Read</button>
                 {mp3 ? <ReactAudioPlayer
                     src={mp3}
