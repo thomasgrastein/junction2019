@@ -3,8 +3,6 @@ import logo from './Kenko.svg';
 
 import { Button, Layout, List, Steps, Row, Col, Icon } from 'antd';
 
-import logo from './Kenko.svg';
-
 
 import FirstStep from './steps/FirstStep';
 import SecondStep from './steps/SecondStep';
