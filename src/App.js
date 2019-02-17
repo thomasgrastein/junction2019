@@ -86,7 +86,7 @@ class App extends Component {
       symptoms: this.state.symptoms,
       images: this.state.pics,
     }
-    fetch('https://junction2019server.herokuapp.com/send', {
+    fetch('http://localhost:7000/send', {
       method: "POST",
       mode: 'no-cors',
       header: {
