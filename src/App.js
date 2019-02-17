@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import logo from './Kenko.svg';
+
 import { Button, Layout, List, Steps, Row, Col, Icon } from 'antd';
-import logo from './logo2.svg';
+
 
 import FirstStep from './steps/FirstStep';
 import SecondStep from './steps/SecondStep';
@@ -18,31 +20,6 @@ const {
 } = Layout;
 const Step = Steps.Step;
 
-const steps = [{
-  title: 'Point',
-    icon: <Icon type="user" />,
-  content: <FirstStep />,
-}, {
-  title: 'Describe',
-  icon: <Icon type="form" />,
-  content: <SecondStep />,
-}, {
-  title: 'Camera',
-  icon: <Icon type="camera" />,
-  content: <FourthStep />,
-}, {
-  title: 'Diagnosis',
-  icon: <Icon type="file" />,
-  content: <ThirdStep />,
-}, {
-    title: 'Book',
-    icon: <Icon type="calendar" />,
-    content: <FifthStep/>,
-}, {
-    title: 'Done',
-    icon: <Icon type="smile" />,
-    content: <SixthStep/>
-}];
 
 class App extends Component {
   constructor() {
@@ -50,10 +27,12 @@ class App extends Component {
     this.state = {
       pics: [],
       current: 0,
+      symptoms: [],
+      webcamEnabled: false,
     }
   }
 
-  next() {
+  next = () => {
     const current = this.state.current + 1;
     this.setState({ current });
   }
@@ -63,8 +42,85 @@ class App extends Component {
     this.setState({ current });
   }
 
+  addCaptureToState = (imageSrc) => {
+    this.setState({
+      pics: [...this.state.pics, imageSrc]
+  }, () => this.sendDataToEmailServer())
+  };
+
+  removeCaptureFromState = (e) => {
+    this.setState(prevState => ({
+      pics: prevState.pics.filter(image => image !== e)
+    }));
+  };
+
+  addListToState = (obj) => {
+    this.setState(prevState => ({
+      symptoms: [...prevState.symptoms, obj]
+    }));
+  }
+
+  updateListInState = (arr) => {
+    this.setState({ symptoms: arr });
+  }
+
+  sendDataToEmailServer = () => {
+    let data = {
+      from: "mrdoctor@savinglives.com",
+      to: "ladelunds@gmail.com",
+      subject: "summarydiagnosis",
+      symptoms: this.state.symptoms,
+      images: this.state.pics,
+    }
+    fetch('https://junction2019server.herokuapp.com/send', {
+      method: "POST",
+      mode: 'no-cors',
+      header: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then(r => console.log(JSON.stringify(data)));
+  }
+
+  enableWebcam = () => {
+      this.setState({ webcamEnabled: true })
+  }
+
   render() {
-    const { current } = this.state;
+    const { current, symptoms } = this.state;
+    let steps = [{
+      title: 'Point',
+      icon: <Icon type="user" />,
+      content: <FirstStep addListToState={this.addListToState} updateListInState={this.updateListInState} symptoms={symptoms} />,
+    }, {
+      title: 'Describe',
+      icon: <Icon type="form" />,
+      content: <SecondStep />,
+    }, {
+      title: 'Picture',
+      icon: <Icon type="camera" />,
+      content: <FourthStep
+            addCaptureToState={this.addCaptureToState}
+            removeCaptureFromState={this.removeCaptureFromState}
+            imageData={this.state.pics}
+            next={this.next}
+            enableWebcam={this.enableWebcam}
+            webcamState={this.state.webcamEnabled}/>,
+    }, {
+      title: 'Report',
+      icon: <Icon type="file" />,
+      content: <ThirdStep />,
+    }, {
+      title: 'Book',
+      icon: <Icon type="calendar" />,
+      content: <FifthStep />,
+    }, {
+      title: 'Done',
+      icon: <Icon type="smile" />,
+      content: <SixthStep />
+    }];
+
     return (
       <div className="App">
         <Layout>
@@ -72,7 +128,7 @@ class App extends Component {
             <div>
               <img src={logo} className="App-logo" alt="logo" />
             </div>
-            <Row className="steps" type="flex" justify="center" align="middle" style={{background: "#f0f2f5" }}>
+            <Row className="steps" type="flex" justify="center" align="middle" style={{ background: "#f0f2f5" }}>
               <Col span={16}>
                 <Steps className="steps" current={current}>
                   {steps.map(item => <Step key={item.title} title={item.title} icon={item.icon} />)}

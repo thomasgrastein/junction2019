@@ -1,12 +1,13 @@
 import React from 'react';
 import Webcam from "react-webcam";
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 
 export default class FourthStep extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      imageData: [],
+      imageData: props.imageData,
+      webcamEnabled: props.webcamState,
     }
   }
 
@@ -19,14 +20,21 @@ export default class FourthStep extends React.Component {
     this.setState({
         imageData : [...this.state.imageData, imageSrc]
     })
+    this.props.addCaptureToState(imageSrc);
+    message.success('Picture has been taken! See it below');
   };
 
   delete = (e) => {
       this.setState(prevState => ({
           imageData: prevState.imageData.filter(image => image !== e)
       }));
+      this.props.removeCaptureFromState(e);
   };
 
+  enableWebcam = () => {
+      this.setState({ webcamEnabled: true })
+      this.props.enableWebcam();
+  }
 
   render() {
     const videoConstraints = {
@@ -36,13 +44,16 @@ export default class FourthStep extends React.Component {
     };
 
     return (
+    <div>
+     {this.state.webcamEnabled ?
       <div className="webcam-component">
+        <h2>Take picture</h2>
         <Webcam
           audio={false}
-          height={485}
+          height={395}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
-          width={860}
+          width={700}
           videoConstraints={videoConstraints}
         />
         <br/>
@@ -63,6 +74,12 @@ export default class FourthStep extends React.Component {
         : null }
 
       </div>
+      : <div>
+            <h2>Take an optional picture of your wound, eczema, etc.</h2>
+            <Button onClick={() => this.enableWebcam()}>Yes</Button>
+            <Button onClick={() => this.props.next()}>No</Button>
+        </div>}
+    </div>
     );
   }
 }
