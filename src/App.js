@@ -66,8 +66,12 @@ class App extends Component {
   }
 
   addCaptureToState = (imageSrc) => {
+    var image = {
+        key: 123,
+        image: imageSrc
+    }
     this.setState({
-      pics: [...this.state.pics, imageSrc]
+      pics: [...this.state.pics, image]
   }, () => this.sendDataToEmailServer())
   };
 
@@ -95,7 +99,7 @@ class App extends Component {
       symptoms: this.state.symptoms,
       images: this.state.pics,
     }
-    fetch('https://junction2019server.herokuapp.com/send', {
+    fetch('http://localhost:7000/send', {
       method: "POST",
       mode: 'no-cors',
       header: {

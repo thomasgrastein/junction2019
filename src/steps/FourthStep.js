@@ -17,8 +17,12 @@ export default class FourthStep extends React.Component {
 
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
+    var image = {
+        key: 123,
+        image: imageSrc
+    }
     this.setState({
-        imageData : [...this.state.imageData, imageSrc]
+        imageData : [...this.state.imageData, image]
     })
     this.props.addCaptureToState(imageSrc);
     message.success('Picture has been taken! See it below');
@@ -70,7 +74,7 @@ export default class FourthStep extends React.Component {
                 {this.state.imageData.map((image) => {
                   return (
                       <div>
-                          <img src={image}/>
+                          <img src={image.image}/>
                           <br/>
                           <Button className="image-delete" icon="close" size="small" type="danger" shape="circle" onClick={() => this.delete(image)}></Button>
                       </div>
