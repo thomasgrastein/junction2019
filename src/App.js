@@ -28,6 +28,16 @@ class App extends Component {
       pics: [],
       current: 0,
       symptoms: [],
+      description: {
+        age: null,
+        gender: null,
+        pain:  0,
+        previous: null,
+        first: null,
+        activities: [],
+        elaboration: null,
+      },
+      diagnosis: [],
     }
   }
 
@@ -87,16 +97,28 @@ class App extends Component {
     }).then(r => console.log(JSON.stringify(data)));
   }
 
+  updateDescription = (description) => {
+    this.setState({description});
+  }
+
+  updateDiagnosis = (diagnosis) => {
+    console.log(diagnosis);
+    this.setState({diagnosis});
+  }
+
   render() {
-    const { current, symptoms } = this.state;
+    const { current, symptoms, description } = this.state;
     let steps = [{
       title: 'Point',
       icon: <Icon type="user" />,
-      content: <FirstStep addListToState={this.addListToState} updateListInState={this.updateListInState} symptoms={symptoms} />,
+      content: <FirstStep
+        addListToState={this.addListToState}
+        updateListInState={this.updateListInState}
+        symptoms={symptoms} />,
     }, {
       title: 'Describe',
       icon: <Icon type="form" />,
-      content: <SecondStep />,
+      content: <SecondStep description={description} updateDescription={this.updateDescription} />,
     }, {
       title: 'Picture',
       icon: <Icon type="camera" />,
@@ -107,7 +129,7 @@ class App extends Component {
     }, {
       title: 'Report',
       icon: <Icon type="file" />,
-      content: <ThirdStep />,
+      content: <ThirdStep symptoms={symptoms} description={description} updateDiagnosis={this.updateDiagnosis} />,
     }, {
       title: 'Book',
       icon: <Icon type="calendar" />,
