@@ -53,6 +53,12 @@ export default class FourthStep extends React.Component {
           height={395}
           ref={this.setRef}
           screenshotFormat="image/jpeg"
+          style={{
+            MozTransform: 'scale(-1, 1)',
+            WebkitTransform: 'scale(-1, 1)',
+            OTransform: 'scale(-1, 1)',
+            transform: 'scale(-1, 1)'
+          }}
           width={700}
           videoConstraints={videoConstraints}
         />
